@@ -262,7 +262,7 @@
                                                                   </a>
                                                               </li>
                                                               <li>
-                                                                  <a href="dashboard-settings.html">
+                                                                  <a href="{{route('user.profile')}}">
                                                                       <i class="la la-edit mr-1"></i> Edit profile
                                                                   </a>
                                                               </li>
@@ -275,7 +275,7 @@
                                                                   </a>
                                                               </li>
                                                               <li>
-                                                                  <a href="index.html">
+                                                                  <a href="{{route('user.logout')}}">
                                                                       <i class="la la-power-off mr-1"></i> Logout
                                                                   </a>
                                                               </li>

@@ -69,7 +69,7 @@
             <div class="container-fluid">
 
                 @yield('userdashboard')
-                @include('frontend.dashboard.body.footer')
+                {{-- @include('frontend.dashboard.body.footer') --}}
 
 
 
