@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
+    
 
     <!-- Datatable  -->
     <link href="{{asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
@@ -75,6 +76,11 @@
     <!--app JS-->
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 	<script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+ 
     <script>
         new PerfectScrollbar(".app-container")
     </script>

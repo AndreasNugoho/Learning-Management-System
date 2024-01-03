@@ -88,4 +88,23 @@ class CategoryController extends Controller
         } // end else 
 
     }
+
+    public function DeleteCategory($id){
+
+        $item = Category::find($id);
+        $img = $item->image;
+        unlink($img);
+
+        Category::find($id)-> delete();
+
+        $notification = array(
+            'message' => 'Category Updated without image Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+
+    }
+
+
 }
