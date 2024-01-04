@@ -85,7 +85,7 @@
                 // send ajax request
 
                 $.ajax({
-                    url:"{{route('update.user.status')}}",
+                    url:"{{route('update.user.stauts')}}",
                     method: "POST",
                     data: {
                         user_id: userId,
