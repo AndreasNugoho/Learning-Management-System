@@ -96,6 +96,6 @@
 
             @endif
 
-        </ul>
+        </ul> 
         <!--end navigation-->
     </div>
