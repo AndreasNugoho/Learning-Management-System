@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\Course_goal;
 use App\Models\SubCategory;
 use Intervention\Image\Facades\Image;
 
