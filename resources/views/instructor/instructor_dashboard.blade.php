@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
 
-	<!-- Datatable -->
-	<link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
-	<!-- End Datatable -->
+    <!-- Datatable -->
+    <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+    <!-- End Datatable -->
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <title>Instructure Dashboard</title>
@@ -75,10 +75,10 @@
     <!--app JS-->
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
-	<script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
     <script>
         new PerfectScrollbar(".app-container")
     </script>
@@ -113,6 +113,15 @@
         });
     </script>
     <!--End Datatable-->
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'powerpaste advcode table lists checklist',
+            toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
+        });
+    </script>
 
 </body>
 
