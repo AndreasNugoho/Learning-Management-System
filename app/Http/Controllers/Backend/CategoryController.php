@@ -28,6 +28,7 @@ class CategoryController extends Controller
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(370, 246)->save('upload/category/' . $name_gen);
         $save_url = 'upload/category/' . $name_gen;
+        
         Category::insert([
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
