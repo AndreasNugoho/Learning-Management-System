@@ -20,27 +20,28 @@ class CourseController extends Controller
     $id = Auth::user()->id;
     $courses = Course::where('instructor_id', $id)->orderBy('id', 'desc')->get();
     return view('instructor.courses.all_course', compact('courses'));
-  }
+  } // End Method 
 
   public function AddCourse()
   {
 
     $categories = Category::latest()->get();
     return view('instructor.courses.add_course', compact('categories'));
-  }
+  } // End Method 
+
 
   public function GetSubCategory($category_id)
   {
 
     $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
     return json_encode($subcat);
-  }
+  } // End Method 
 
   public function StoreCourse(Request $request)
   {
 
     $request->validate([
-      'video' => 'required|mimes:mp4|max:10000',
+      'video' => 'required|mimes:mp4|max:1000000',
     ]);
 
     $image = $request->file('course_image');
@@ -62,7 +63,7 @@ class CourseController extends Controller
       'course_name' => $request->course_name,
       'course_name_slug' => strtolower(str_replace(' ', '-', $request->course_name)),
       'description' => $request->description,
-      'video' =>  $save_video,
+      'video' => $save_video,
 
       'label' => $request->label,
       'duration' => $request->duration,
@@ -79,10 +80,9 @@ class CourseController extends Controller
       'course_image' => $save_url,
       'created_at' => Carbon::now(),
 
-
     ]);
 
-    // course goals 
+    /// Course Goals Add Form 
 
     $goles = Count($request->course_goals);
     if ($goles != NULL) {
@@ -93,14 +93,15 @@ class CourseController extends Controller
         $gcount->save();
       }
     }
+    /// End Course Goals Add Form 
 
-    $notifications = array(
+    $notification = array(
       'message' => 'Course Inserted Successfully',
       'alert-type' => 'success'
     );
+    return redirect()->route('all.course')->with($notification);
+  } // End Method 
 
-    return redirect()->route('all.course')->with($notifications);
-  } //end method store course
 
   public function EditCourse($id)
   {
@@ -110,16 +111,15 @@ class CourseController extends Controller
     $categories = Category::latest()->get();
     $subcategories = SubCategory::latest()->get();
     return view('instructor.courses.edit_course', compact('course', 'categories', 'subcategories', 'goals'));
-  } // end method edit course
+  } // End Method 
+
 
   public function UpdateCourse(Request $request)
   {
 
     $cid = $request->course_id;
 
-
     Course::find($cid)->update([
-
       'category_id' => $request->category_id,
       'subcategory_id' => $request->subcategory_id,
       'instructor_id' => Auth::user()->id,
@@ -127,6 +127,7 @@ class CourseController extends Controller
       'course_name' => $request->course_name,
       'course_name_slug' => strtolower(str_replace(' ', '-', $request->course_name)),
       'description' => $request->description,
+
       'label' => $request->label,
       'duration' => $request->duration,
       'resources' => $request->resources,
@@ -138,18 +139,16 @@ class CourseController extends Controller
       'bestseller' => $request->bestseller,
       'featured' => $request->featured,
       'highestrated' => $request->highestrated,
-      'updated_at' => Carbon::now(),
-
 
     ]);
 
-    $notifications = array(
+    $notification = array(
       'message' => 'Course Updated Successfully',
       'alert-type' => 'success'
     );
+    return redirect()->route('all.course')->with($notification);
+  } // End Method 
 
-    return redirect()->route('all.course')->with($notifications);
-  } // end method course update
 
   public function UpdateCourseImage(Request $request)
   {
@@ -171,14 +170,12 @@ class CourseController extends Controller
       'updated_at' => Carbon::now(),
     ]);
 
-    $notifications = array(
+    $notification = array(
       'message' => 'Course Image Updated Successfully',
       'alert-type' => 'success'
     );
-
-    return redirect()->back()->with($notifications);
-  } // end method update image
-
+    return redirect()->back()->with($notification);
+  } // End Method 
 
 
   public function UpdateCourseVideo(Request $request)
@@ -201,13 +198,12 @@ class CourseController extends Controller
       'updated_at' => Carbon::now(),
     ]);
 
-    $notifications = array(
+    $notification = array(
       'message' => 'Course Video Updated Successfully',
       'alert-type' => 'success'
     );
-
-    return redirect()->back()->with($notifications);
-  } // end method update video
+    return redirect()->back()->with($notification);
+  }
 
 
   public function UpdateCourseGoal(Request $request)
@@ -236,5 +232,30 @@ class CourseController extends Controller
       'alert-type' => 'success'
     );
     return redirect()->back()->with($notification);
-  }
+  } // End Method 
+
+  public function DeleteCourse($id){
+    $course = Course::find($id);
+    unlink($course->course_image);
+    unlink($course->video);
+
+    Course::find($id)->delete();
+
+    $goalsData = Course_goal::where('course_id',$id)->get();
+    foreach ($goalsData as $item) {
+        $item->goal_name;
+        Course_goal::where('course_id',$id)->delete();
+    }
+
+    $notification = array(
+        'message' => 'Course Deleted Successfully',
+        'alert-type' => 'success'
+    );
+    return redirect()->back()->with($notification); 
+
+}// End Method 
+
+
+
+
 }
