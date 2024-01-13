@@ -113,7 +113,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="input1" class="form-label">Resource</label>
-                        <input type="text" name="resource" class="form-control" id="input1"
+                        <input type="text" name="resources" class="form-control" id="input1"
                             placeholder="First Name">
                     </div>
 
