@@ -39,10 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/change/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 //// Admin group middleware
-Route::middleware(['auth','roles:admin'])->group(function(){
+Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 
@@ -52,37 +52,32 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
-    
+
     // category route
-    Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/category','AllCategory')->name('all.category');
-        Route::get('/add/category','AddCategory')->name('add.category');
-        Route::post('/store/category','StoreCategory')->name('store.category');
-        Route::get('/edit/category/{id}','EditCategory')->name('edit.category');
-        Route::post('/update/category','UpdateCategory')->name('update.category');
-        Route::get('/delete/category/{id}','DeleteCategory')->name('delete.category');
-     
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/all/category', 'AllCategory')->name('all.category');
+        Route::get('/add/category', 'AddCategory')->name('add.category');
+        Route::post('/store/category', 'StoreCategory')->name('store.category');
+        Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
+        Route::post('/update/category', 'UpdateCategory')->name('update.category');
+        Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
     });
 
     //subCategory route
-    Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/subcategory','AllSubCategory')->name('all.subcategory');
-        Route::get('/add/subcategory','AddSubCategory')->name('add.subcategory');
-        Route::post('/store/subcategory','StoreSubCategory')->name('store.subcategory');
-        Route::get('/edit/subcategory/{id}','EditSubCategory')->name('edit.subcategory');
-        Route::post('/update/subcategory','UpdateSubCategory')->name('update.subcategory');
-        Route::get('/delete/subcategory/{id}','DeleteSubCategory')->name('delete.subcategory');
-     
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/all/subcategory', 'AllSubCategory')->name('all.subcategory');
+        Route::get('/add/subcategory', 'AddSubCategory')->name('add.subcategory');
+        Route::post('/store/subcategory', 'StoreSubCategory')->name('store.subcategory');
+        Route::get('/edit/subcategory/{id}', 'EditSubCategory')->name('edit.subcategory');
+        Route::post('/update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
+        Route::get('/delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
     });
 
     //instructor route
-    Route::controller(AdminController::class)->group(function(){
-        Route::get('/all/instructor','AllInstructor')->name('all.instructor');
-        Route::post('/update/user/stauts','UpdateUserStatus')->name('update.user.stauts');
-     
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/all/instructor', 'AllInstructor')->name('all.instructor');
+        Route::post('/update/user/stauts', 'UpdateUserStatus')->name('update.user.stauts');
     });
-
-
 }); // end admin middleware
 
 
@@ -95,31 +90,29 @@ Route::post('/instructor/register', [AdminController::class, 'InstructorRegister
 
 //// Instructor group middleware
 
-Route::middleware(['auth','roles:instructor'])->group(function(){
+Route::middleware(['auth', 'roles:instructor'])->group(function () {
 
-    Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');    
-    Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');    
-    Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');    
-    Route::get('/instructor/change/password', [InstructorController::class, 'InstructorChangePassword'])->name('instructor.change.password');    
-    Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');    
-    Route::post('/instructor/password/update', [InstructorController::class, 'InstructorPasswordUpdate'])->name('instructor.password.update');    
+    Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
+    Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');
+    Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');
+    Route::get('/instructor/change/password', [InstructorController::class, 'InstructorChangePassword'])->name('instructor.change.password');
+    Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');
+    Route::post('/instructor/password/update', [InstructorController::class, 'InstructorPasswordUpdate'])->name('instructor.password.update');
 
-    Route::controller(CourseController::class)->group(function(){
-        Route::get('/all/course','AllCourse')->name('all.course');
-        Route::get('/add/course','AddCourse')->name('add.course');
+    Route::controller(CourseController::class)->group(function () {
+        Route::get('/all/course', 'AllCourse')->name('all.course');
+        Route::get('/add/course', 'AddCourse')->name('add.course');
 
-        Route::get('/subcategory/ajax/{category_id}','GetSubCategory');
+        Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
 
-        Route::post('/store/course','StoreCourse')->name('store.course');
+        Route::post('/store/course', 'StoreCourse')->name('store.course');
 
-        Route::get('/edit/course/{id}','EditCourse')->name('edit.course');
-        Route::post('/update/course','UpdateCourse')->name('update.course');
+        Route::get('/edit/course/{id}', 'EditCourse')->name('edit.course');
+        Route::post('/update/course', 'UpdateCourse')->name('update.course');
 
-        Route::post('/update/course/image','UpdateCourseImage')->name('update.course.image');
-
+        Route::post('/update/course/image', 'UpdateCourseImage')->name('update.course.image');
+        Route::post('/update/course/video', 'UpdateCourseVideo')->name('update.course.video');
     });
 });
 
 Route::get('/instructor/login', [InstructorController::class, 'InstructorLogin'])->name('instructor.login');
-
-
