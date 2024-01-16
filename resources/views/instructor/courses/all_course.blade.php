@@ -52,7 +52,7 @@
                                         <a href="{{ route('delete.course', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="delete"><i class="lni lni-trash"></i> </a>
                                         <a href="{{ route('edit.course', $item->id) }}" class="btn btn-warning"
-                                            title="Lecture"><i class="lni lni-list"></i> </a>
+                                            title="Lecture"><i class="lni lni-list"></i>a </a>
                                     </td>
                                 </tr>
                             @endforeach
