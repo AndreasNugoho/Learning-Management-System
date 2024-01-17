@@ -41,7 +41,7 @@ class CourseController extends Controller
   {
 
     $request->validate([
-      'video' => 'required|mimes:mp4|max:1000000',
+      'video' => 'required|mimes:mp4|max:100000',
     ]);
 
     $image = $request->file('course_image');
@@ -234,26 +234,26 @@ class CourseController extends Controller
     return redirect()->back()->with($notification);
   } // End Method 
 
-  public function DeleteCourse($id){
+  public function DeleteCourse($id)
+  {
     $course = Course::find($id);
     unlink($course->course_image);
     unlink($course->video);
 
     Course::find($id)->delete();
 
-    $goalsData = Course_goal::where('course_id',$id)->get();
+    $goalsData = Course_goal::where('course_id', $id)->get();
     foreach ($goalsData as $item) {
-        $item->goal_name;
-        Course_goal::where('course_id',$id)->delete();
+      $item->goal_name;
+      Course_goal::where('course_id', $id)->delete();
     }
 
     $notification = array(
-        'message' => 'Course Deleted Successfully',
-        'alert-type' => 'success'
+      'message' => 'Course Deleted Successfully',
+      'alert-type' => 'success'
     );
-    return redirect()->back()->with($notification); 
-
-}// End Method 
+    return redirect()->back()->with($notification);
+  } // End Method 
 
 
 
