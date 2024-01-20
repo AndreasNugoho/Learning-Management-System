@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('backend/assets/images/favicon-32x32.png') }}" type="image/png" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     <!--plugins-->
     <link href="{{ asset('backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -30,8 +34,11 @@
     <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
     <!-- End Datatable -->
 
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    <title>Instructure Dashboard</title>
+
+
+    <title>Instructor Dashboard </title>
 </head>
 
 <body>
@@ -59,7 +66,6 @@
     <!--end wrapper-->
 
 
-
     <!--end switcher-->
     <!-- Bootstrap JS -->
     <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -79,9 +85,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+
+
     <script>
         new PerfectScrollbar(".app-container")
     </script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
@@ -91,18 +100,22 @@
                 case 'info':
                     toastr.info(" {{ Session::get('message') }} ");
                     break;
+
                 case 'success':
                     toastr.success(" {{ Session::get('message') }} ");
                     break;
+
                 case 'warning':
                     toastr.warning(" {{ Session::get('message') }} ");
                     break;
+
                 case 'error':
                     toastr.error(" {{ Session::get('message') }} ");
                     break;
             }
         @endif
     </script>
+
 
     <!--Datatable-->
     <script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
@@ -122,6 +135,7 @@
             toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
         });
     </script>
+
 
 </body>
 
